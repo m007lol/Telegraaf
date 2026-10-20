@@ -40,7 +40,7 @@ class NewsModal(discord.ui.Modal, title="Nieuw News Artikel"):
     titel = discord.ui.TextInput(label="Titel", placeholder="Bijv: Politie achtervolgt BMW i8", max_length=256, required=True)
     artikel = discord.ui.TextInput(label="Artikel tekst", placeholder="Schrijf hier het hele artikel...", style=discord.TextStyle.paragraph, max_length=3000, required=True)
     afbeelding_url = discord.ui.TextInput(label="Afbeelding URL (optioneel)", placeholder="https://...", required=False)
-    bron = discord.ui.TextInput(label="Bron", placeholder="Bijv: NOS.NL", default="NOS.NL", required=False, max_length=50)
+    bron = discord.ui.TextInput(label="Bron", placeholder="Bijv: Telegraaf.NL", default="Telegraaf.NL", required=False, max_length=50)
 
     async def on_submit(self, interaction: discord.Interaction):
         await interaction.response.defer(ephemeral=True)
@@ -57,7 +57,7 @@ class NewsModal(discord.ui.Modal, title="Nieuw News Artikel"):
         now = datetime.now(amsterdam_tz)
         datum_str = now.strftime("%d-%m-%Y - %H:%M")
 
-        bron_text = self.bron.value if self.bron.value else "NOS.NL"
+        bron_text = self.bron.value if self.bron.value else "Telegraaf.NL"
         
         # GEEN timestamp meer = geen "vandaag om 11:31" erbij
         embed = discord.Embed(title=self.titel.value, description=self.artikel.value, color=0x2B2D31)
